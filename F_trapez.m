@@ -23,4 +23,3 @@ function [F,J] =  F_trapez(z, ti, h, yi, f, df)
     J = (h/2).*(df(ti, yi)+df((ti+h),(yi+z)))-z;
     
 end
-5gZ{2%.y=_]G
