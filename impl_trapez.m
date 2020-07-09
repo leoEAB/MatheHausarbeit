@@ -11,7 +11,7 @@
 % y     : Matrix der approximierierten Lösungswerte y(i) mit i= 0,...,n der
 % Größe (n+1) x k
 
-function [t,y] = impl_euler(f,tspan,ya,n,df,tol,nmax)
+function [t,y] = impl_trapez(f,tspan,ya,n,df,tol,nmax)
     k = length(ya);
     %Alocate memorys-space
     t = zeros(n+1,1);
@@ -32,7 +32,7 @@ function [t,y] = impl_euler(f,tspan,ya,n,df,tol,nmax)
 
     
     for i=1:n
-        [z,~,~] = newton(@(zi) F_euler(zi,t(i),h,y(i,:),f,df), x0, tol, nmax);
+        [z,~,~] = newton(@(zi) F_trapez(zi,t(i),h,y(i,:),f,df), x0, tol, nmax);
         y(i+1,:) = y(i,:) + z';
     end
     

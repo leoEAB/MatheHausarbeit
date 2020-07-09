@@ -11,15 +11,20 @@
 
 
 function [F,J] =  F_euler(z, ti, h, yi, f, df)
-    % Initialiaze Outpurs
+    % Initialiaze Outputs
     k = length(z);  
     F = zeros(k,1);
     J = sparse(k,k);
+    dz = sparse(k,k);
+    ones_vector = ones(k,1);
+    % compute dz
+    dz = diag(ones_vector);
     
     % compute F
-    F = h.*f((ti+h), yi) - z;
+    F = h.*f((ti+h),(yi+z)) - z;
     
     % compute J
-    J = h.*df((ti+h),(yi+z)) - 1;
+    J = h.*df((ti+h),(yi+z)) -dz;
+    
     
 end

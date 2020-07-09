@@ -27,24 +27,23 @@
 % 	exitflag Rückgabewert 1 falls Iteration Toleranzbedingung erfüllt hat 
 %            ansonsten 0
 %
-function [x, fval, exitflag] = newton(y,dy, x0, tol, nmax)
+function [x, fval, exitflag] = newton(f, x0, tol, nmax)
     
     exitflag = 0;
     m = length(x0);
     x_inter = zeros(m, nmax + 1);
     x_inter(:,1) = x0;
-    delta = zeros(m, nmax-1);
-    fval = y(x_inter(:,1));
-    J = dy(x_inter(:,1));
-    for i = 2 : nmax+1
+    delta = zeros(m, nmax);
+    [fval,J] = f(x_inter(:,1));
+    for i = 2 : nmax
         delta(:,i-1) = J\-fval;
         x_inter(:,i) = x_inter(:,i-1) + delta(:,i-1);
-        fval = y(x_inter(:,i));
-        J = dy(x_inter(:,i));
-        x = x_inter(:,i);
-        if(norm(fval) + norm(x_inter(:,i) - x_inter(:,i-1)) < tol)
+        [fval,J] = f(x_inter(:,i));
+        x = x_inter(:,i-1);
+        if(norm(fval) + norm(x_inter(:,i) - x_inter(i-1)) < tol)
             exitflag = 1;
-            break;
+            return;
         end
     end
+    
 end
