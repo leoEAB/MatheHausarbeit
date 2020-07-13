@@ -17,7 +17,7 @@ function [t,y] = impl_euler(f,tspan,ya,n,df,tol,nmax)
     t = zeros(n+1,1);
     y = zeros(n+1,k);    
     z = zeros(k,1);
-    x0 = zeros(k,1);
+    x0 = ones(k,1);
     
     %Compute step-width h
     t0 = tspan(1);
