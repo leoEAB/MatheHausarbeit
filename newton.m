@@ -33,17 +33,16 @@ function [x, fval, exitflag] = newton(f, x0, tol, nmax)
     m = length(x0);
     x_inter = zeros(m, nmax + 1);
     x_inter(:,1) = x0;
-    delta = zeros(m, nmax);
+    delta = zeros(m, nmax-1);
     [fval,J] = f(x_inter(:,1));
-    for i = 2 : nmax
+    for i = 2 : nmax+1
         delta(:,i-1) = J\-fval;
         x_inter(:,i) = x_inter(:,i-1) + delta(:,i-1);
         [fval,J] = f(x_inter(:,i));
-        x = x_inter(:,i-1);
-        if(norm(fval) + norm(x_inter(:,i) - x_inter(i-1)) < tol)
+        x = x_inter(:,i);
+        if(norm(fval) + norm(x_inter(:,i) - x_inter(:,i-1)) < tol)
             exitflag = 1;
-            return;
+            break;
         end
     end
-    
 end

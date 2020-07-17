@@ -21,9 +21,9 @@ function [F,J] =  F_trapez(z, ti, h, yi, f, df)
     dz = diag(ones_vector);
     
     % compute F
-    F = (h/2).*(f(ti, yi)+f((ti+h),(yi+z)))-z;
+    F = (h/2).*(f(ti, yi')+f((ti+h),(yi'+z)))-z;
     
     % compute J
-    J = (h/2).*(df(ti, yi)+df((ti+h),(yi+z)))-dz;
+    J = (h/2).*(df(ti, yi')+df((ti+h),(yi'+z)))-dz;
     
 end

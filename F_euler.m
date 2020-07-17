@@ -21,10 +21,11 @@ function [F,J] =  F_euler(z, ti, h, yi, f, df)
     dz = diag(ones_vector);
     
     % compute F
-    F = h.*f((ti+h),(yi+z)) - z;
+    
+    F = h.*f((ti+h),(yi'+z))-z;
     
     % compute J
-    J = h.*df((ti+h),(yi+z)) -dz;
-    
+    J = h.*df((ti+h),(yi'+z)) -dz;
+    %J = h.*df((ti+h),(yi+z));
     
 end

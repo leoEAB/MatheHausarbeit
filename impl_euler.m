@@ -17,7 +17,7 @@ function [t,y] = impl_euler(f,tspan,ya,n,df,tol,nmax)
     t = zeros(n+1,1);
     y = zeros(n+1,k);    
     z = zeros(k,1);
-    x0 = ones(k,1);
+    x0 = zeros(k,1);
     
     %Compute step-width h
     t0 = tspan(1);
@@ -32,7 +32,7 @@ function [t,y] = impl_euler(f,tspan,ya,n,df,tol,nmax)
 
     
     for i=1:n
-        [z,~,~] = newton(@(zi) F_euler(zi,t(i),h,y(i,:),f,df), x0, tol, nmax);
+        [z,fval,exitflag] = newton(@(zi) F_euler(zi,t(i),h,y(i,:),f,df), x0, tol, nmax);     
         y(i+1,:) = y(i,:) + z';
     end
     
