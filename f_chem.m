@@ -4,7 +4,7 @@
 % Ausgabe
 % t     : Zeit t
 % dy    : Vector f_chem der Größe 3 x 1
-function [t,dy] = f_chem(t,y)
+function dy = f_chem(t,y)
     %Alocate memorys-space
     dy = zeros(3,1); 
     
