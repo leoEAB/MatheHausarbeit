@@ -1,0 +1,48 @@
+function [z,u]=stationaer_nonlin(s,N,tol,nmax)
+%{
+Eingabe:
+s Funktionshandle auf Funktion s(z)
+function sz=s(z) mit Spaltenvektoren z und sz
+N Anzahl von Teilintervallen N.
+tol Toleranz fur Newton-Verfahren ¨
+nmax maximale Anzahl an Schritten des Newton-Verfahrens
+Ausgabe:
+z Knotenpunkte (z0, z1, . . . , zN ) der Große ¨ (N + 1) × 1
+u Vektor u der Große ¨ (N + 1) × 1
+%}
+
+d = 0.3; % um
+D = 0.3;
+h = d/N;   
+c = D/h.^2;
+
+
+b = zeros(N+1,1); 
+z = zeros(N+1,1);
+u = zeros(N+1,1);
+    
+    
+
+
+% z belegen
+    for i = 1 : N +1
+      z(i ,1 ) = h*(i-1) ;
+      
+    end
+    
+     
+ % b belegen
+    
+   for i = 1:N+1 % 
+         b(i , 1 ) =  - s( z(i,1) ); % 
+   end
+ x0= ones ()
+
+
+[x, fval, exitflag] = newton(@(u)f(u,N,b), x0, tol, nmax)
+
+
+
+
+end
+

@@ -1,7 +1,7 @@
-function sz = s(z)
+function sz = sTestlineare(z)
 
 
- D = 0.3;    % um^2/us
+D = 0.3;    % um^2/us
 
 
 alpha = 10; % 1/um
@@ -16,17 +16,10 @@ k = (k1 + (k2 * ND));
 global s0;
 
 for i= 1 : length(z)
-sz (i) = s0 *  exp(-1 * alpha * z(i) );
-
+    
+    sz (i) = (- 2 * D )+ (k * z(i)^2) + k ; % U(z)=Z^2 +1 für Test
+    
 end
-
-
-
-
-
-
-
-
 
 
 
