@@ -1,4 +1,4 @@
-function [t,dy]= F_4(t,u)
+function dy = F_4(t,u)
 N = length(u);
 d = 0.3;
 h = d/N;
